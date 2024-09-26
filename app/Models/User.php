@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Laratrust\Contracts\LaratrustUser;
+use Illuminate\Notifications\Notifiable;
+use Laratrust\Traits\HasRolesAndPermissions;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable implements LaratrustUser
+{
+    use HasFactory, Notifiable, HasRolesAndPermissions;
+
+    protected $fillable = [
+        'name', 'email', 'age', 'password', 'phone', 'photo', 'address', 'email_verified_at', 'role'
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+}
